@@ -1,0 +1,71 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+file_path = 'path/to/your/Heart Disease data.csv'
+data = pd.read_csv(file_path)
+print(data.head())
+plt.figure(figsize=(20, 15))
+plt.subplot(3, 3, 1)
+sns.histplot(data['age'], kde=True)
+plt.title('Age Distribution')
+plt.subplot(3, 3, 2)
+sns.countplot(x='sex', data=data)
+plt.title('Sex Distribution')
+plt.subplot(3, 3, 3)
+sns.countplot(x='cp', data=data)
+plt.title('Chest Pain Type Distribution')
+plt.subplot(3, 3, 4)
+sns.histplot(data['trestbps'], kde=True)
+plt.title('Resting Blood Pressure Distribution')
+plt.subplot(3, 3, 5)
+sns.histplot(data['chol'], kde=True)
+plt.title('Serum Cholesterol Distribution')
+plt.subplot(3, 3, 6)
+sns.histplot(data['thalach'], kde=True)
+plt.title('Maximum Heart Rate Achieved Distribution')
+plt.subplot(3, 3, 7)
+sns.countplot(x='exang', data=data)
+plt.title('Exercise Induced Angina Distribution')
+plt.subplot(3, 3, 8)
+sns.countplot(x='ca', data=data)
+plt.title('Major Vessels Colored by Fluoroscopy Distribution')
+plt.subplot(3, 3, 9)
+sns.countplot(x='thal', data=data)
+plt.title('Thalassemia Distribution')
+
+plt.tight_layout()
+plt.show()
+corr_matrix = data.corr()
+plt.figure(figsize=(12, 10))
+sns.heatmap(corr_matrix, annot=True, cmap='coolwarm', fmt='.2f')
+plt.title('Correlation Matrix')
+plt.show()
+
+plt.figure(figsize=(18, 12))
+
+plt.subplot(2, 3, 1)
+sns.histplot(data=data, x='age', hue='target', kde=True, multiple='stack')
+plt.title('Age Distribution by Heart Disease Presence')
+
+plt.subplot(2, 3, 2)
+sns.countplot(x='cp', hue='target', data=data)
+plt.title('Chest Pain Type Distribution by Heart Disease Presence')
+
+plt.subplot(2, 3, 3)
+sns.histplot(data=data, x='chol', hue='target', kde=True, multiple='stack')
+plt.title('Serum Cholesterol Distribution by Heart Disease Presence')
+
+plt.subplot(2, 3, 4)
+sns.histplot(data=data, x='thalach', hue='target', kde=True, multiple='stack')
+plt.title('Maximum Heart Rate Achieved by Heart Disease Presence')
+
+plt.subplot(2, 3, 5)
+sns.countplot(x='exang', hue='target', data=data)
+plt.title('Exercise-Induced Angina by Heart Disease Presence')
+
+plt.subplot(2, 3, 6)
+sns.countplot(x='ca', hue='target', data=data)
+plt.title('Major Vessels Colored by Fluoroscopy by Heart Disease Presence')
+
+plt.tight_layout()
+plt.show()
