@@ -30,7 +30,7 @@ file_path = 'path/to/your/Heart Disease data.csv'
 ```
 ## Run the script:
 ```bash
-python heart_disease_analysis.py
+python Diagnostic analysis.py
 ```
 ## Script Overview
 The script performs the following steps:
